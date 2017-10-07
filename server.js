@@ -1,38 +1,39 @@
-var express = require("express");
-var bodyParser = require("body-parser");
+const express = require("express");
+const bodyParser = require("body-parser");
+const path = require("path");
+const exphbs = require("express-handlebars");
+const mysql = require("mysql");
 
-var app = express();
-var port = 3100;
+const app = express();
+const PORT = process.env.PORT || 4100;
 
-// Parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+const connection;
 
+if (process.env.JAWSDB_URL) {
+    connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+    connection = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "",
+        database: "pugs_db"
+    });
+};
+
+// Serve static content for the app from the "public" directory in the application directory.
+app.use(express.static("public"));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Set Handlebars.
 var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-app.use(express.static("public"));
 
-var mysql = require("mysql");
+// grab the file that has the routes and logic
+var routes = require("./public/js/pugs.js");
 
-var connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "pugs_db"
-});
+// app.use("/", routes); not sure if we need this??
 
-connection.connect(function (err) {
-    if (err) {
-        console.error("error connecting: " + err.stack);
-        return;
-    }
-
-    console.log("connected as id " + connection.threadId);
-});
-
-
-app.listen(port, function () {
-    console.log("listening on port", port);
-});
+app.listen(port);
