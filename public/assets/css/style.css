@@ -1,0 +1,8 @@
+#mainBody {
+    background-color: #fff;
+    background-image: url("../images/grass.jpg");
+    background-repeat: repeat-x;
+    background-position: left bottom;
+    min-height: 600px;
+    padding-bottom: 160px;
+}

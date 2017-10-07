@@ -4,8 +4,8 @@
         {{#each pugs}} {{#unless didpet}}
 
         <form action="/pugs/done" method="post">
-            <input type="hidden" name="id" value="{{id}}"> {{pugName}}
-            <button type="submit" id="donebtn" class="btn btn-outline-secondary">Pet the Pug!</button>
+            <input type="hidden" name="id" value="{{id}}"> <img src="../assets/images/{{imgID}}.jpg" alt="{{pugName}}">
+            <button type="submit" id="donebtn" class="btn btn-outline-secondary">Pet {{pugName}}</button>
         </form> {{/unless}}
         <br/> {{/each}}
     </div>
@@ -13,7 +13,7 @@
         <h2 class="text-center">Happy Pugs!</h2>
         <ul>
             {{#each pugs}} {{#if didpet}}
-            <li>{{pugName}}</li>
+            <li><img src="../assets/images/{{imgID}}.jpg" alt="{{pugName}}">{{pugName}}</li>
             {{/if}} {{/each}}
         </ul>
     </div>

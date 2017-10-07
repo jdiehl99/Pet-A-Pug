@@ -19,7 +19,6 @@ function showPage(app, __dirname) {
 
     // Add a new pug to the list
     app.post("/pugs/new", function (req, res) {
-        console.log("pugs new");
         // pick a random number from 1-20 to associate with image
         var imgNum = Math.floor(Math.random() * 20) + 1;
         var pug = req.body.pug;
@@ -29,15 +28,20 @@ function showPage(app, __dirname) {
         });
     });
 
+    
     // Walk the pug
     app.post("/pugs/done", function (req, res) {
-        console.log("pugs done");
         var pugID = req.body.id;
-        console.log("pugID", pugID);
         var querySend = 'UPDATE petPug set didpet = "1" where id = "' + pugID + '";';
-        console.log("query",querySend);
         connection.query(querySend, function (err, data) {
-            console.log("data from pet pug mysql",data);
+            if (err) { throw err; }
+            res.redirect("/");
+        });
+    });
+
+    // Clear out the list of all pugs
+    app.get("/pugs/clear", function (req, res) {
+        connection.query('DELETE FROM petPug;', function (err, data) {
             if (err) { throw err; }
             res.redirect("/");
         });
