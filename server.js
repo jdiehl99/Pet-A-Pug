@@ -7,7 +7,7 @@ const mysql = require("mysql");
 const app = express();
 const PORT = process.env.PORT || 4100;
 
-const connection;
+var connection;
 
 if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.JAWSDB_URL);
@@ -20,14 +20,8 @@ if (process.env.JAWSDB_URL) {
     });
 };
 
-// Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
-
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// Set Handlebars.
-var exphbs = require("express-handlebars");
-
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
@@ -36,4 +30,4 @@ var routes = require("./public/js/pugs.js");
 
 // app.use("/", routes); not sure if we need this??
 
-app.listen(port);
+app.listen(PORT);

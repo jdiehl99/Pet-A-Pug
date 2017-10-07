@@ -1,3 +1,9 @@
+const express = require("express");
+const bodyParser = require("body-parser");
+const path = require("path");
+
+const app = express();
+
 // Get list of pugs from db and send to handlebars index page
 app.get("/", function (req, res) {
     connection.query("SELECT * FROM petPug;", function (err, data) {
