@@ -1,13 +1,13 @@
-DROP DATABASE IS EXISTS dino_db;
-CREATE DATABASE dino_db;
+DROP DATABASE IS EXISTS pugs_db;
+CREATE DATABASE pugs_db;
 
-USE dino_db;
+USE pugs_db;
 
-CREATE TABLE walkDino (
+CREATE TABLE petPug (
     id INT(11) AUTO_INCREMENT NOT NULL,
-    dinoName VARCHAR(255),
-    walked BOOLEAN DEFAULT FALSE,
+    pugName VARCHAR(255),
+    didpet BOOLEAN DEFAULT FALSE,
+    imgID VARCHAR(5) NOT NULL,
     createdAt TIMESTAMP NOT NULL,
     PRIMARY KEY (id)
 );
-
