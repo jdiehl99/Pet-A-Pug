@@ -1,30 +1,20 @@
 <div class="row">
-    <div class="col text-center" id="dinolist">
-        <h2>Dinos to Walk</h2>
-        {{#each sdinoLeft}}
-        <form action="/dino/done" method="post">
-            <input type="hidden" name="id" value="{{@index}}">
-            <input type="hidden" name="dinoName" value="{{dinoName}}"> {{dinoName}}
-            <button type="submit" id="donebtn" class="btn btn-outline-secondary">Walk the dinosaur!</button>
-        </form>
+    <div class="col text-center" id="puglist">
+        <h2>Pugs to Pet</h2>
+        {{#each pugs}} {{#unless didpet}}
+
+        <form action="/pugs/done" method="post">
+            <input type="hidden" name="id" value="{{id}}"> {{pugName}}
+            <button type="submit" id="donebtn" class="btn btn-outline-secondary">Pet the Pug!</button>
+        </form> {{/unless}}
         <br/> {{/each}}
     </div>
-    <div class="col text-center">
-        <img src="https://media.giphy.com/media/3rgXBvnbXtxwaWmhr2/giphy.gif">
-        <br/>
-        <audio controls autoplay>
-            <source src="https://desolate-hamlet-36931.herokuapp.com/public/assets/audio/Was-Not-Was-Walk-the-Dinosaur.mp3" type="audio/mpeg"> Your browser does not support the audio element.
-        </audio>
-        <br/>
-        <a href="https://youtu.be/zYKupOsaJmk" title="Bonus! Walk the Dinosaur Video at YouTube">Bonus! Walk the Dinosaur Video at YouTube</a>
-
-    </div>
-    <div class="col text-center" id="dinodone">
-        <h2 class="text-center">Walked Dinos</h2>
+    <div class="col text-center" id="pugdone">
+        <h2 class="text-center">Happy Pugs!</h2>
         <ul>
-            {{#each sdinoRight}}
-            <li>{{dinoName}}</li>
-            {{/each}}
+            {{#each pugs}} {{#if didpet}}
+            <li>{{pugName}}</li>
+            {{/if}} {{/each}}
         </ul>
     </div>
 </div>
