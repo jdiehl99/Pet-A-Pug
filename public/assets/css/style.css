@@ -3,9 +3,11 @@ body {
     background-image: url("../images/paw-prints-background.jpg");
 }
 #mainBody{
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
     min-height: 400px;
+    background: #fff;
+    border: 1px solid blue;
 }
 
 h1 {
